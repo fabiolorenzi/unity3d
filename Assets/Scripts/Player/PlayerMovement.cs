@@ -24,5 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer()
     {
         move_directions = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
+        move_directions = transform.TransformDirection(move_directions * speed * Time.deltaTime);
+        character_controller.Move(move_directions);
     }
 }
