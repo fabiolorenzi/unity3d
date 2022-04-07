@@ -25,6 +25,15 @@ public class PlayerMovement : MonoBehaviour
     {
         move_directions = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
         move_directions = transform.TransformDirection(move_directions * speed * Time.deltaTime);
+
+        ApplyGravity();
+
         character_controller.Move(move_directions);
+    }
+
+    public void ApplyGravity()
+    {
+        vertical_velocity -= gravity * Time.deltaTime;
+        move_directions.y = vertical_velocity * Time.deltaTime;
     }
 }
